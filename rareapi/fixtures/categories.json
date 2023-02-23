@@ -1,0 +1,23 @@
+[
+    {
+        "model": "rareapi.event",
+        "pk": 1,
+        "fields": {
+            "label": "Sports"
+        }
+    },
+    {
+        "model": "rareapi.event",
+        "pk": 2,
+        "fields": {
+            "label": "Lifestyle"
+        }
+    },
+    {
+        "model": "rareapi.event",
+        "pk": 3,
+        "fields": {
+            "label": "Finance"
+        }
+    }
+]
