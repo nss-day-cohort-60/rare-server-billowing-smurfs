@@ -1,0 +1,29 @@
+[
+    {
+        "model": "rareapi.author",
+        "pk": 1,
+        "fields": {
+            "user": 1,
+            "bio": "Rootin tootin kind of gal",
+            "profile_image_url": "https://www.google.com/imgres?imgurl=http%3A%2F%2Fsmashbros-ultimate.com%2Fimages%2Fitems%2Frenders%2Fmr-saturn.png&imgrefurl=http%3A%2F%2Fsmashbros-ultimate.com%2Fitems%2Fmr-saturn&tbnid=aRFwD_UyBTToGM&vet=12ahUKEwi3rPHdhKz9AhWoDjQIHVeEB6MQMygJegUIARDKAQ..i&docid=zK6csKSeysw_TM&w=372&h=384&q=mr%20saturn&hl=en-US&ved=2ahUKEwi3rPHdhKz9AhWoDjQIHVeEB6MQMygJegUIARDKAQ" 
+        }
+    },
+    {
+        "model": "rareapi.author",
+        "pk": 2,
+        "fields": {
+            "user": 2,
+            "bio": "May the force be wichu",
+            "profile_image_url": "https://www.google.com/imgres?imgurl=https%3A%2F%2Fmedia.gq.com%2Fphotos%2F5ddd59ff5bb28e00087a9df6%2F1%3A1%2Fw_1254%2Ch_1254%2Cc_limit%2Fbaby-yoda-explainer-gq-november-2019-112619.jpg&imgrefurl=https%3A%2F%2Fwww.gq.com%2Fstory%2Fhow-to-explain-baby-yoda-to-your-relatives-this-thanksgiving&tbnid=wUpf3Pu7k1T3eM&vet=12ahUKEwi_gbSahaz9AhXdATQIHTMhDdAQMygDegUIARDmAQ..i&docid=0CnSM0Gqw1CB4M&w=1254&h=1254&q=baby%20yoda&ved=2ahUKEwi_gbSahaz9AhXdATQIHTMhDdAQMygDegUIARDmAQ" 
+        }
+    },
+    {
+        "model": "rareapi.author",
+        "pk": 3,
+        "fields": {
+            "user": 3,
+            "bio": "I like it when you call me Pillow Papa",
+            "profile_image_url": "https://res.cloudinary.com/dmilofp0z/image/upload/v1677169248/thepillowpapa_qqub43.png" 
+        }
+    }
+]
