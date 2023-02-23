@@ -6,3 +6,6 @@ class Author(models.Model):
     bio = models.CharField(max_length=200)
     profile_image_url = models.CharField(max_length=200)
 
+    @property
+    def full_name(self):
+        return f'{self.user.first_name} {self.user.last_name}'
