@@ -1,1 +1,1 @@
-from .posts import Post
+from .Author import Author
