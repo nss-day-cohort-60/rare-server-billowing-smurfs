@@ -18,7 +18,7 @@ class CategoryView(ViewSet):
         return Response(serializer.data)
 
 class CategorySerializer(serializers.ModelSerializer):
-    """JSON serializer for game types
+    """JSON serializer for categories
     """
     class Meta:
         model = Category
