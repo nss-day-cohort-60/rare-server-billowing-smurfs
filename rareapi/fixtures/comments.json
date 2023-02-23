@@ -1,0 +1,31 @@
+[
+    {
+        "model": "rareapi.comment",
+        "pk": 1,
+        "fields":{
+            "author" : 1,
+            "post" : 2, 
+            "body" : "This is good.",
+            "date" : "2019-10-03T10:45:34Z"
+            
+        }
+    },{
+        "model": "rareapi.comment",
+        "pk": 2,
+        "fields":{
+            "author" : 2,
+            "post" : 1, 
+            "body" : "This is not good.",
+            "date" : "2020-11-04T12:42:22Z"
+        }
+    },{
+        "model": "rareapi.comment",
+        "pk": 3,
+        "fields":{
+            "author" : 3,
+            "post" : 3, 
+            "body" : "This hurts my feelings because I'm sensitive.",
+            "date" : "2022-04-11T12:01:12Z"
+        }
+    }
+]
