@@ -1,0 +1,27 @@
+[
+    {
+        "author" : 1,
+        "category" : 2, 
+        "title" : "The Bird in the Bowery",
+        "publication_date" : "2019/10/03T10:45:34Z",
+        "image_url" : "https://cdn.britannica.com/36/123536-050-95CB0C6E/Variety-fruits-vegetables.jpg",
+        "content" :"The Quick Brown Fox Jumped Over The Something Something.",
+        "comments" : []
+    },{
+        "author" : 2,
+        "category" : 1, 
+        "title" : "Chocolate Milk",
+        "publication_date" : "2020/11/04T12:42:22Z",
+        "image_url" : "https://a.cdn-hotels.com/gdcs/production0/d1513/35c1c89e-408c-4449-9abe-f109068f40c0.jpg?impolicy=fcrop&w=800&h=533&q=medium",
+        "content" :"Bologna sandwiches are better fried.",
+        "comments" : []
+    },{
+        "author" : 3,
+        "category" : 3, 
+        "title" : "Da Dunder Dict",
+        "publication_date" : "2022/04/11T12:01:12Z",
+        "image_url" : "https://evergreenhealth.org/wp-content/uploads/2022/09/healthy-foods.jpg",
+        "content" :"Chugga chugga chugga chugga choo-choo.",
+        "comments" : []
+    }
+]
