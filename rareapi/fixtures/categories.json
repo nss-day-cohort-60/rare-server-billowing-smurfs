@@ -1,20 +1,20 @@
 [
     {
-        "model": "rareapi.event",
+        "model": "rareapi.category",
         "pk": 1,
         "fields": {
             "label": "Sports"
         }
     },
     {
-        "model": "rareapi.event",
+        "model": "rareapi.category",
         "pk": 2,
         "fields": {
             "label": "Lifestyle"
         }
     },
     {
-        "model": "rareapi.event",
+        "model": "rareapi.category",
         "pk": 3,
         "fields": {
             "label": "Finance"
