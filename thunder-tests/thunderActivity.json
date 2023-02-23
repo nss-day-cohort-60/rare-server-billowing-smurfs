@@ -1,0 +1,95 @@
+[
+  {
+    "_id": "296152ed-ffde-4106-88a8-e58eba1b467e",
+    "colId": "history",
+    "containerId": "",
+    "name": "localhost:8000/login",
+    "url": "localhost:8000/login",
+    "method": "POST",
+    "sortNum": 0,
+    "created": "2023-02-23T20:09:41.563Z",
+    "modified": "2023-02-23T21:36:34.919Z",
+    "headers": [
+      {
+        "name": "Authorization",
+        "value": "fa2eba9be8282d595c997ee5cd49f2ed31f65mad",
+        "isDisabled": true
+      }
+    ],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"username\": \"Carrie1945\",\n  \"password\":\"me\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "61b998be-67b8-4e6f-b2b3-c68d23fe5d7d",
+    "colId": "history",
+    "containerId": "",
+    "name": "localhost:8000/register",
+    "url": "localhost:8000/register",
+    "method": "POST",
+    "sortNum": 0,
+    "created": "2023-02-23T20:38:42.874Z",
+    "modified": "2023-02-23T20:40:41.088Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n    \"username\": \"Scooter\",\n    \"password\": \"McTooter\",\n    \"first_name\": \"Scooter\",\n    \"last_name\": \"McTooter\",\n    \"bio\": \"Tooter grew up in Hunstville where he learned the art of stank\",\n    \"profile_image_url\": \"https://i5.walmartimages.com/asr/8fd5e3a9-8639-41b8-89f7-389e613c1af4.e0651e64d22a43a2bd1a82ec5d835e94.jpeg?odnHeight=612&odnWidth=612&odnBg=FFFFFF\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "836e1e78-e3bf-4ebd-86be-0f9f070d1b94",
+    "colId": "history",
+    "containerId": "",
+    "name": "localhost:8000/categories",
+    "url": "localhost:8000/categories",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2023-02-23T21:30:45.262Z",
+    "modified": "2023-02-23T21:37:23.759Z",
+    "headers": [
+      {
+        "name": "Authorization",
+        "value": "Token fa2eba9be8282d595c997ee5cd49f2ed31f65bed"
+      }
+    ],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"username\": \"Carrie1945\",\n  \"password\":\"me\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "6942007f-4a14-49a8-835e-ed10d8653254",
+    "colId": "history",
+    "containerId": "",
+    "name": "localhost:8000/login",
+    "url": "localhost:8000/login",
+    "method": "PUT",
+    "sortNum": 0,
+    "created": "2023-02-23T21:36:22.014Z",
+    "modified": "2023-02-23T21:36:22.014Z",
+    "headers": [
+      {
+        "name": "Authorization",
+        "value": "fa2eba9be8282d595c997ee5cd49f2ed31f65mad",
+        "isDisabled": true
+      }
+    ],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"username\": \"Carrie1945\",\n  \"password\":\"me\"\n}",
+      "form": []
+    },
+    "tests": []
+  }
+]

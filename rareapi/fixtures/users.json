@@ -21,7 +21,7 @@
         "model": "auth.user",
         "pk": 2,
         "fields": {
-            "password": "qwerf2_sha256$216000$qMRH8szID7Z8$Vljya2V3XfruOHuvx1hGz9ZyKg4bxbw7rc2WO0gTR7I=",
+            "password": "pbkdf2_sha256$216000$qMRH8szID7Z8$Vljya2V3XfruOHuvx1hGz9ZyKg4bxbw7rc2WO0gTR7I=",
             "last_login": null,
             "is_superuser": false,
             "username": "ChristyLe",
@@ -39,7 +39,7 @@
         "model": "auth.user",
         "pk": 3,
         "fields": {
-            "password": "pasdf2_sha256$216000$qMRH8szID7Z8$Vljya2V3XfruOHuvx1hGz9ZyKg4bxbw7rc2WO0gTR7I=",
+            "password": "pbkdf2_sha256$216000$qMRH8szID7Z8$Vljya2V3XfruOHuvx1hGz9ZyKg4bxbw7rc2WO0gTR7I=",
             "last_login": null,
             "is_superuser": false,
             "username": "JamesLinkous",
@@ -57,7 +57,7 @@
         "model": "auth.user",
         "pk": 4,
         "fields": {
-            "password": "pzxcv2_sha256$216000$qMRH8szID7Z8$Vljya2V3XfruOHuvx1hGz9ZyKg4bxbw7rc2WO0gTR7I=",
+            "password": "pbkdf2_sha256$216000$qMRH8szID7Z8$Vljya2V3XfruOHuvx1hGz9ZyKg4bxbw7rc2WO0gTR7I=",
             "last_login": null,
             "is_superuser": false,
             "username": "RickyCanepa",
@@ -75,7 +75,7 @@
         "model": "auth.user",
         "pk": 5,
         "fields": {
-            "password": "pqsfh2_sha256$216000$qMRH8szID7Z8$Vljya2V3XfruOHuvx1hGz9ZyKg4bxbw7rc2WO0gTR7I=",
+            "password": "pbkdf2_sha256$216000$qMRH8szID7Z8$Vljya2V3XfruOHuvx1hGz9ZyKg4bxbw7rc2WO0gTR7I=",
             "last_login": null,
             "is_superuser": false,
             "username": "JasonHowes",
