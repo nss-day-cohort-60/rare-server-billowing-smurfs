@@ -55,7 +55,6 @@ class PostView(ViewSet):
         post = Post.objects.get(pk = pk)
         post.category = category
         post.title = request.data['title']
-        post.publication_date = request.data['publication_date']
         post.image_url = request.data['image_url']
         post.content = request.data['content']
         post.save()
