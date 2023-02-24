@@ -3,6 +3,7 @@ from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers, status
 from rareapi.models import Post, Comment, Author, Category
+from rest_framework.decorators import action
 
 class PostView(ViewSet):
     """Handles Requests to /posts"""
@@ -55,11 +56,32 @@ class PostView(ViewSet):
         post = Post.objects.get(pk = pk)
         post.delete()
         return Response(None, status = status.HTTP_204_NO_CONTENT) 
-
+    
+    @action(methods=['post'], detail=True)
+    def comment(self, request, pk):
+        author = Author.objects.get(user=request.auth.user)
+        post = Post.objects.get(pk=pk)
+        comment = Comment.objects.create(
+            body = request.data['body'],
+            author = author,
+            post = post,
+            date = request.data['date']
+        )
+        # post.comments.add(author.author_comment)
+        return Response({'message': 'Comment Added'}, status=status.HTTP_201_CREATED)
+    
+    @action(methods=['delete'], detail=True)
+    def delete_comment(self, request, pk):
+        """pk is the pk of the comment, not the post
+        """
+        comment = Comment.objects.get(pk=pk)
+        comment.delete()
+        return Response({'message': 'Comment Deleted'}, status=status.HTTP_204_NO_CONTENT)
+        
 class PostCommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comment
-        fields = ('body' , 'author' , 'post' , 'date')
+        fields = ('id' , 'body' , 'author' , 'post' , 'date')
 
 class PostAuthorSerializer(serializers.ModelSerializer):
     class Meta:
