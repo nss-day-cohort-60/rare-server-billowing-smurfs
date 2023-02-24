@@ -89,6 +89,11 @@ class PostView(ViewSet):
         comment.delete()
         return Response({'message': 'Comment Deleted'}, status=status.HTTP_204_NO_CONTENT)
         
+class PostCategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields = ('id' , 'label')
+
 class PostCommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comment
@@ -101,6 +106,7 @@ class PostAuthorSerializer(serializers.ModelSerializer):
 
 
 class PostSerializer(serializers.ModelSerializer):
+    category = PostCategorySerializer(many=False)
     post_comment = PostCommentSerializer(many=True)
     author = PostAuthorSerializer(many=False)
     class Meta:
