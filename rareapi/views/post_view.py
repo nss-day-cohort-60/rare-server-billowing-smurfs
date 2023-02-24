@@ -11,6 +11,10 @@ class PostView(ViewSet):
         """Handles get requests to /posts
         Returns a serialized list of post instances"""
         posts = Post.objects.all()
+        for post in posts:
+            post.is_author = False
+            if post.author.user == request.auth.user:
+                post.is_author = True
         #query to user_id to get all posts by author
         if "user_id" in request.query_params:
             author_instance = Author.objects.get(pk=request.query_params['user_id'])
@@ -22,6 +26,9 @@ class PostView(ViewSet):
         """Handles get requests to /posts/pk
         Returns a serialized object instance of post"""
         post = Post.objects.get(pk = pk)
+        post.is_author = False
+        if post.author == request.auth.user:
+            post.is_author = True
         serialized = PostSerializer(post, many = False)
         return Response(serialized.data, status=status.HTTP_200_OK)
 
@@ -99,4 +106,4 @@ class PostSerializer(serializers.ModelSerializer):
     author = PostAuthorSerializer(many=False)
     class Meta:
         model = Post
-        fields = ('id' , 'author' , 'category' , 'title' , 'publication_date' , 'image_url' , 'content' , 'approved' , 'post_comment')
+        fields = ('id' , 'author' , 'category' , 'title' , 'publication_date' , 'image_url' , 'content' , 'approved' , 'post_comment', 'is_author')
