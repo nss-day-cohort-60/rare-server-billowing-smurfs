@@ -11,6 +11,10 @@ class PostView(ViewSet):
         """Handles get requests to /posts
         Returns a serialized list of post instances"""
         posts = Post.objects.all()
+        #query to user_id to get all posts by author
+        if "user_id" in request.query_params:
+            author_instance = Author.objects.get(pk=request.query_params['user_id'])
+            posts = posts.filter(author = author_instance)
         serialized = PostSerializer(posts, many = True)
         return Response(serialized.data, status=status.HTTP_200_OK)
 
@@ -58,6 +62,7 @@ class PostView(ViewSet):
         return Response(None, status = status.HTTP_204_NO_CONTENT) 
     
     @action(methods=['post'], detail=True)
+    #pk here is the pk of the post
     def comment(self, request, pk):
         author = Author.objects.get(user=request.auth.user)
         post = Post.objects.get(pk=pk)
