@@ -26,8 +26,9 @@ class PostView(ViewSet):
         """Handles get requests to /posts/pk
         Returns a serialized object instance of post"""
         post = Post.objects.get(pk = pk)
+        author = Author.objects.get(user = request.auth.user)
         post.is_author = False
-        if post.author == request.auth.user:
+        if post.author == author:
             post.is_author = True
         serialized = PostSerializer(post, many = False)
         return Response(serialized.data, status=status.HTTP_200_OK)
