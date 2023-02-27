@@ -20,6 +20,7 @@ class PostView(ViewSet):
                 post.is_author = True
         # query to user_id to get all posts by author
         if "user_id" in request.query_params:
+
             author_instance = Author.objects.get(
                 pk=request.query_params['user_id'])
             posts = posts.filter(author=author_instance)
@@ -31,9 +32,20 @@ class PostView(ViewSet):
         Returns a serialized object instance of post"""
         post = Post.objects.get(pk=pk)
         author = Author.objects.get(user=request.auth.user)
+
         post.is_author = False
         if post.author == author:
             post.is_author = True
+            # create empty list
+        for comment in post.post_comment.all():
+            comment.is_author = False
+            if comment.author == author:
+                comment.is_author = True
+            # add comment to list
+        # set list as value of custom property
+        # post.comments.is_author = False
+        # if post.post_comment.author == author :
+        #     post.comments.is_author = True
         serialized = PostSerializer(post, many=False)
         return Response(serialized.data, status=status.HTTP_200_OK)
 
@@ -92,6 +104,16 @@ class PostView(ViewSet):
         comment.delete()
         return Response({'message': 'Comment Deleted'}, status=status.HTTP_204_NO_CONTENT)
 
+    @action(methods=['get'], detail=False)
+    def bananaHammock(self, request):
+        """pk is the pk of the comment, not the post
+        """
+        author_instance = Author.objects.get(user=request.auth.user)
+        posts = Post.objects.all()
+        posts = posts.filter(author=author_instance)
+        serialized = PostSerializer(posts, many=True)
+        return Response(serialized.data, status=status.HTTP_200_OK)
+
 
 class PostCategorySerializer(serializers.ModelSerializer):
     class Meta:
@@ -102,7 +124,7 @@ class PostCategorySerializer(serializers.ModelSerializer):
 class PostCommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comment
-        fields = ('id', 'body', 'author', 'post', 'date')
+        fields = ('id', 'body', 'author', 'post', 'date',)
 
 
 class PostAuthorSerializer(serializers.ModelSerializer):
