@@ -20,3 +20,11 @@ class Post(models.Model):
     @is_author.setter
     def is_author(self, value):
         self.__author = value
+
+    @property
+    def author_comments(self):
+        return self.__author
+
+    @author_comments.setter
+    def author_comments(self, value):
+        self.__author = value

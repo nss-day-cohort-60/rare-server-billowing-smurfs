@@ -31,9 +31,20 @@ class PostView(ViewSet):
         Returns a serialized object instance of post"""
         post = Post.objects.get(pk=pk)
         author = Author.objects.get(user=request.auth.user)
+        
         post.is_author = False
         if post.author == author:
             post.is_author = True
+            # create empty list
+        for comment in post.post_comment.all() : 
+            comment.is_author = False
+            if comment.author == author:
+                comment.is_author = True
+            # add comment to list
+        # set list as value of custom property
+        # post.comments.is_author = False
+        # if post.post_comment.author == author :
+        #     post.comments.is_author = True
         serialized = PostSerializer(post, many=False)
         return Response(serialized.data, status=status.HTTP_200_OK)
 
@@ -102,7 +113,7 @@ class PostCategorySerializer(serializers.ModelSerializer):
 class PostCommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comment
-        fields = ('id', 'body', 'author', 'post', 'date')
+        fields = ('id', 'body', 'author', 'post', 'date', 'is_author')
 
 
 class PostAuthorSerializer(serializers.ModelSerializer):
