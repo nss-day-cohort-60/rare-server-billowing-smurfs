@@ -13,7 +13,7 @@ class PostView(ViewSet):
     def list(self, request):
         """Handles get requests to /posts
         Returns a serialized list of post instances"""
-        posts = Post.objects.all()
+        posts = Post.objects.all().order_by('-publication_date')
         for post in posts:
             post.is_author = False
             if post.author.user == request.auth.user:
