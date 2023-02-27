@@ -5,8 +5,10 @@ from rest_framework import serializers, status
 from rareapi.models import Post, Comment, Author, Category
 from rest_framework.decorators import action
 
+
 class PostView(ViewSet):
     """Handles Requests to /posts"""
+
     def list(self, request):
         """Handles get requests to /posts
         Returns a serialized list of post instances"""
@@ -15,73 +17,74 @@ class PostView(ViewSet):
             post.is_author = False
             if post.author.user == request.auth.user:
                 post.is_author = True
-        #query to user_id to get all posts by author
+        # query to user_id to get all posts by author
         if "user_id" in request.query_params:
-            author_instance = Author.objects.get(pk=request.query_params['user_id'])
-            posts = posts.filter(author = author_instance)
-        serialized = PostSerializer(posts, many = True)
+            author_instance = Author.objects.get(
+                pk=request.query_params['user_id'])
+            posts = posts.filter(author=author_instance)
+        serialized = PostSerializer(posts, many=True)
         return Response(serialized.data, status=status.HTTP_200_OK)
 
     def retrieve(self, request, pk):
         """Handles get requests to /posts/pk
         Returns a serialized object instance of post"""
-        post = Post.objects.get(pk = pk)
-        author = Author.objects.get(user = request.auth.user)
+        post = Post.objects.get(pk=pk)
+        author = Author.objects.get(user=request.auth.user)
         post.is_author = False
         if post.author == author:
             post.is_author = True
-        serialized = PostSerializer(post, many = False)
+        serialized = PostSerializer(post, many=False)
         return Response(serialized.data, status=status.HTTP_200_OK)
 
     def create(self, request):
         """Handles POST requests to /posts
         Returns a serialized instance of post with a 201"""
-        author = Author.objects.get(user = request.auth.user)
-        category = Category.objects.get(pk = request.data["category"])
+        author = Author.objects.get(user=request.auth.user)
+        category = Category.objects.get(pk=request.data["category"])
         new_post = Post.objects.create(
-            author = author,
-            category = category,
-            title = request.data['title'],
-            publication_date = request.data['publication_date'],
-            image_url = request.data['image_url'],
-            content = request.data['content']
+            author=author,
+            category=category,
+            title=request.data['title'],
+            publication_date=request.data['publication_date'],
+            image_url=request.data['image_url'],
+            content=request.data['content']
         )
-        serialized = PostSerializer(new_post, many = False)
+        serialized = PostSerializer(new_post, many=False)
         return Response(serialized.data, status=status.HTTP_201_CREATED)
 
     def update(self, request, pk):
         """Handles PUT requests to /posts/pk
         Returns nothing with a 204."""
-        category = Category.objects.get(pk = request.data['category'])
-        post = Post.objects.get(pk = pk)
-        post.category = category
+
+        post = Post.objects.get(pk=pk)
+
         post.title = request.data['title']
         post.image_url = request.data['image_url']
         post.content = request.data['content']
         post.save()
-        return Response(None, status = status.HTTP_204_NO_CONTENT)
+        return Response(None, status=status.HTTP_204_NO_CONTENT)
 
     def destroy(self, request, pk):
         """Handles DELETE requests to /posts/pk
         Returns nothing with a 204."""
-        post = Post.objects.get(pk = pk)
+        post = Post.objects.get(pk=pk)
         post.delete()
-        return Response(None, status = status.HTTP_204_NO_CONTENT) 
-    
+        return Response(None, status=status.HTTP_204_NO_CONTENT)
+
     @action(methods=['post'], detail=True)
-    #pk here is the pk of the post
+    # pk here is the pk of the post
     def comment(self, request, pk):
         author = Author.objects.get(user=request.auth.user)
         post = Post.objects.get(pk=pk)
         comment = Comment.objects.create(
-            body = request.data['body'],
-            author = author,
-            post = post,
-            date = request.data['date']
+            body=request.data['body'],
+            author=author,
+            post=post,
+            date=request.data['date']
         )
         # post.comments.add(author.author_comment)
         return Response({'message': 'Comment Added'}, status=status.HTTP_201_CREATED)
-    
+
     @action(methods=['delete'], detail=True)
     def delete_comment(self, request, pk):
         """pk is the pk of the comment, not the post
@@ -89,27 +92,32 @@ class PostView(ViewSet):
         comment = Comment.objects.get(pk=pk)
         comment.delete()
         return Response({'message': 'Comment Deleted'}, status=status.HTTP_204_NO_CONTENT)
-        
+
+
 class PostCategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
-        fields = ('id' , 'label')
+        fields = ('id', 'label')
+
 
 class PostCommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comment
-        fields = ('id' , 'body' , 'author' , 'post' , 'date')
+        fields = ('id', 'body', 'author', 'post', 'date')
+
 
 class PostAuthorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Author
-        fields = ('id' , 'full_name', 'profile_image_url')
+        fields = ('id', 'full_name', 'profile_image_url')
 
 
 class PostSerializer(serializers.ModelSerializer):
     category = PostCategorySerializer(many=False)
     post_comment = PostCommentSerializer(many=True)
     author = PostAuthorSerializer(many=False)
+
     class Meta:
         model = Post
-        fields = ('id' , 'author' , 'category' , 'title' , 'publication_date' , 'image_url' , 'content' , 'approved' , 'post_comment', 'is_author')
+        fields = ('id', 'author', 'category', 'title', 'publication_date',
+                  'image_url', 'content', 'approved', 'post_comment', 'is_author')
