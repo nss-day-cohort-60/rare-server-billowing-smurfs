@@ -9,3 +9,11 @@ class Author(models.Model):
     @property
     def full_name(self):
         return f'{self.user.first_name} {self.user.last_name}'
+    
+    @property
+    def date_joined(self):
+        return f'{self.user.date_joined}'
+    
+    @property
+    def username(self):
+        return f'{self.user.username}'
