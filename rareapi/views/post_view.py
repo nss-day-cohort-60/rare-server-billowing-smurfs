@@ -4,6 +4,7 @@ from rest_framework.response import Response
 from rest_framework import serializers, status
 from rareapi.models import Post, Comment, Author, Category
 from rest_framework.decorators import action
+import datetime
 
 
 class PostView(ViewSet):
@@ -45,7 +46,6 @@ class PostView(ViewSet):
             author=author,
             category=category,
             title=request.data['title'],
-            publication_date=request.data['publication_date'],
             image_url=request.data['image_url'],
             content=request.data['content']
         )
@@ -79,8 +79,7 @@ class PostView(ViewSet):
         comment = Comment.objects.create(
             body=request.data['body'],
             author=author,
-            post=post,
-            date=request.data['date']
+            post=post
         )
         # post.comments.add(author.author_comment)
         return Response({'message': 'Comment Added'}, status=status.HTTP_201_CREATED)

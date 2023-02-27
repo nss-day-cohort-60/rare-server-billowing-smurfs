@@ -1,19 +1,22 @@
 from django.db import models
 
+
 class Post(models.Model):
-    author = models.ForeignKey("Author", on_delete=models.CASCADE, related_name="author_post")
-    category = models.ForeignKey("Category", on_delete=models.CASCADE, related_name="category_post")
+    author = models.ForeignKey(
+        "Author", on_delete=models.CASCADE, related_name="author_post")
+    category = models.ForeignKey(
+        "Category", on_delete=models.CASCADE, related_name="category_post")
     title = models.CharField(max_length=50)
-    publication_date = models.DateTimeField()
+    publication_date = models.DateTimeField(auto_now=True)
     image_url = models.CharField(max_length=200)
     content = models.CharField(max_length=2000)
-    approved = models.BooleanField(default = True)
+    approved = models.BooleanField(default=True)
     comments = models.ManyToManyField("Author", through="Comment")
 
     @property
     def is_author(self):
         return self.__author
-    
+
     @is_author.setter
     def is_author(self, value):
-        self.__author=value
+        self.__author = value
