@@ -11,7 +11,6 @@ class Post(models.Model):
     image_url = models.CharField(max_length=200)
     content = models.CharField(max_length=2000)
     approved = models.BooleanField(default=True)
-    comments = models.ManyToManyField("Author", through="Comment")
 
     @property
     def is_author(self):
