@@ -27,3 +27,4 @@ class Post(models.Model):
     @author_comments.setter
     def author_comments(self, value):
         self.__author = value
+

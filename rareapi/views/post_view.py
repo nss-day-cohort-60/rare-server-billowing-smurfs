@@ -130,7 +130,7 @@ class PostCommentSerializer(serializers.ModelSerializer):
 class PostAuthorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Author
-        fields = ('id', 'full_name', 'profile_image_url')
+        fields = ('id','username', 'full_name', 'profile_image_url')
 
 
 class PostSerializer(serializers.ModelSerializer):

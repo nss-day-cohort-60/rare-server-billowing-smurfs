@@ -8,3 +8,11 @@ class Comment(models.Model):
     post = models.ForeignKey(
         "Post", on_delete=models.CASCADE, related_name="post_comment")
     date = models.DateTimeField(auto_now=True)
+
+    @property
+    def is_author(self):
+        return self.__author
+
+    @is_author.setter
+    def is_author(self, value):
+        self.__author = value
