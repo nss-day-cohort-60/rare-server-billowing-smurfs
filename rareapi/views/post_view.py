@@ -24,7 +24,8 @@ class PostView(ViewSet):
             author_instance = Author.objects.get(
                 pk=request.query_params['user_id'])
             posts = posts.filter(author=author_instance)
-        serialized = PostSerializer(posts, many=True)
+        serialized = PostSerializer(
+            posts, many=True, context={'request': request})
         return Response(serialized.data, status=status.HTTP_200_OK)
 
     def retrieve(self, request, pk):
@@ -36,17 +37,14 @@ class PostView(ViewSet):
         post.is_author = False
         if post.author == author:
             post.is_author = True
-            # create empty list
-        for comment in post.post_comment.all():
-            comment.is_author = False
-            if comment.author == author:
-                comment.is_author = True
-            # add comment to list
-        # set list as value of custom property
-        # post.comments.is_author = False
-        # if post.post_comment.author == author :
-        #     post.comments.is_author = True
-        serialized = PostSerializer(post, many=False)
+
+        # for comment in post.post_comment.all():
+        #     comment.is_author = False
+        #     if comment.author == author:
+        #         comment.is_author = True
+
+        serialized = PostSerializer(
+            post, many=False, context={'request': request})
         return Response(serialized.data, status=status.HTTP_200_OK)
 
     def create(self, request):
@@ -111,7 +109,8 @@ class PostView(ViewSet):
         author_instance = Author.objects.get(user=request.auth.user)
         posts = Post.objects.all()
         posts = posts.filter(author=author_instance)
-        serialized = PostSerializer(posts, many=True)
+        serialized = PostSerializer(
+            posts, many=True, context={'request': request})
         return Response(serialized.data, status=status.HTTP_200_OK)
 
 
@@ -122,15 +121,20 @@ class PostCategorySerializer(serializers.ModelSerializer):
 
 
 class PostCommentSerializer(serializers.ModelSerializer):
+    is_author = serializers.SerializerMethodField()
+
     class Meta:
         model = Comment
-        fields = ('id', 'body', 'author', 'post', 'date',)
+        fields = ('id', 'body', 'author', 'post', 'date', 'is_author')
+
+    def get_is_author(self, comment):
+        return comment.author.user == self.context['request'].auth.user
 
 
 class PostAuthorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Author
-        fields = ('id','username', 'full_name', 'profile_image_url')
+        fields = ('id', 'username', 'full_name', 'profile_image_url')
 
 
 class PostSerializer(serializers.ModelSerializer):
